@@ -20,9 +20,6 @@ module data_switch# (
     input [31:0]               packet_size,
     input [31:0]               pp_group,
     input [31:0]               frame_size,
-    output reg [15:0]          counter_tlast1,
-    output reg [15:0]          counter_tlast2,
-    output reg [15:0]          counter_ps,  //Counter for the path switch
 
     // The input stream
     input[DW-1:0]              axis_in_tdata,
@@ -60,6 +57,9 @@ wire [31:0] tlast_enable_threshold;
 assign frame_per_output = FRAME_SIZE/PACKET_SIZE;
 assign packet_per_output = PP_GROUP*PACKET_SIZE;
 assign tlast_enable_threshold = frame_per_output - packet_per_output;
+reg [15:0]          counter_tlast1;
+reg [15:0]          counter_tlast2;
+reg [15:0]          counter_ps;  //Counter for the path switch
 
 always @(posedge clk) begin
     if (resetn == 0) begin
