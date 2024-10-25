@@ -1,1 +1,1 @@
-# Nexys_A7_StudentChallenge
+# nexys_template
